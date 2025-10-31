@@ -61,16 +61,16 @@ defmodule InkfishWeb.ViewHelpers do
   def show_reg_role(%Reg{} = reg) do
     cond do
       reg.is_prof ->
-        "prof"
+        "Prof"
 
       reg.is_staff ->
-        "staff"
+        "Staff"
 
       reg.is_student ->
-        "student"
+        "Student"
 
       true ->
-        "observer"
+        "Observer"
     end
   end
 
@@ -124,7 +124,7 @@ defmodule InkfishWeb.ViewHelpers do
     # FIXME: Global scale. Should be per course.
     # Scale for 5610 Fall 2019 was 2.2%.
 
-    # num = num + 410 # systems spring 2021 
+    # num = num + 410 # systems spring 2021
     # num = num + 350 # web dev spring 2021
 
     cond do
@@ -151,6 +151,16 @@ defmodule InkfishWeb.ViewHelpers do
       |> Decimal.add(Decimal.new("0"))
       |> Decimal.to_string(:normal)
     end)
+  end
+  
+  # <%= show_score(bucket, @totals[bucket.id]) %>
+  def show_score(bucket, %Decimal{} = score) do
+    IO.inspect(bucket)
+    if bucket do
+      show_score(score)
+    else
+      show_score(nil)
+    end
   end
 
   def show_score(nil) do

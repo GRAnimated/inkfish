@@ -32,7 +32,7 @@
             <td>
               <% next = Map.get(@dues, reg.course_id) %>
               <%= if next do %>
-                <%= next.name %> <br />
+                <.link href={~p"/assignments/#{next.id}"}><%= next.name %></.link> <br />
                 <span class="human-date"><%= next.due %></span>
               <% else %>
                 ∅

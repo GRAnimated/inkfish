@@ -6,19 +6,33 @@
 
 @import "./console";
 
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+}
+
 .h-3 {
     height: 1em;
 }
 
 .header-logo {
-    width: 64px; 
+    width: 64px;
     height: 64px;
 }
 
 .inkfish-footer {
-    max-width: 75%;
     margin: auto;
-    margin-top: 8em;
+    padding-bottom: 1em;
     border-top: thin solid grey;
 }
 
@@ -26,6 +40,10 @@
     margin: auto;
     padding-top: 1em;
     max-width: 75%;
+}
+
+.inkfish-main-container {
+    flex: 1 0 auto;
 }
 
 .react-datepicker-wrapper {

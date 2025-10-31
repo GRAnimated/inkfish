@@ -1,10 +1,19 @@
-<h1>Show Course</h1>
-
 <%= if is_staff?(@current_reg, @current_user) do %>
   <p>
-    <.link href={~p"/staff/courses/#{@course}"}>Staff View</.link> |
+    <.link href={~p"/staff/courses/#{@course}"}>Staff View</.link>
   </p>
 <% end %>
+
+<h1>
+  <%= @course.name %>
+</h1>
+
+<ul>
+  <li>
+    <strong>Start date:</strong>
+    <%= @course.start_date %>
+  </li>
+</ul>
 
 <%= if @course.attendance_assignment_id do %>
   <div id="attendance-widget" data-course-id={@course.id}>
@@ -12,17 +21,6 @@
     <p>Attendance component goes here...</p>
   </div>
 <% end %>
-
-<ul>
-  <li>
-    <strong>Name:</strong>
-    <%= @course.name %>
-  </li>
-  <li>
-    <strong>Start date:</strong>
-    <%= @course.start_date %>
-  </li>
-</ul>
 
 <%= for bucket <- @course.buckets do %>
   <h2><%= bucket.name %></h2>

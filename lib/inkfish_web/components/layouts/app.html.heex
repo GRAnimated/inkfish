@@ -43,7 +43,7 @@
           </div>
           <div class="col-md-5">
             <%= if @current_user do %>
-              User: {@current_user.email} | {link("Profile",
+              {@current_user.email} | {link("Profile",
                 to: ~p"/users/#{@current_user}"
               )} |
               <%= if @current_ruid do %>
@@ -75,9 +75,9 @@
 
     <div class={
       if assigns[:fluid_grid] do
-        "container-fluid"
+        "container-fluid inkfish-main-container"
       else
-        "container-lg"
+        "container-lg inkfish-main-container"
       end
     }>
       <div class="inkfish-main">

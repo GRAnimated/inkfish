@@ -41,6 +41,17 @@ config :inkfish, InkfishWeb.Endpoint,
       :install_and_run,
       [:default, ~w(--embed-source-map --source-map-urls=absolute --watch)]
     }
+  ],
+  # ensure live reload works in a remote environment
+  live_reload: [
+    backend: Phoenix.LiveReloader.FileSystemWatcher,
+    interval: 1000,
+    patterns: [
+      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/gettext/.*(po)$",
+      ~r"lib/inkfish_web/(live|views|components)/.*(ex)$",
+      ~r"lib/inkfish_web/(views|controllers)/.*(eex|heex)$"
+    ]
   ]
 
 # Watch static and templates for browser reloading.

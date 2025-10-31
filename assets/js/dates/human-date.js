@@ -16,8 +16,8 @@ function rel_text(aa, bb) {
 
 function show_date(text) {
   let date = parse_date_time(text);
-  let human_date = format(date, 'EEEE, yyyy-MMM-dd');
-  let human_time = format(date, 'HH:mm');
+  let human_date = format(date, 'EEEE, MMM dd, yyyy');
+  let human_time = format(date, 'hh:mm a');
   let rel_date = rel_text(new Date(), date);
   return `${human_date} at ${human_time}; ${rel_date}`;
 }
