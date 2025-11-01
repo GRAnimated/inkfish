@@ -2,6 +2,12 @@
   Course: <%= @course.name %>
 </h1>
 
+<%= if is_staff?(@current_reg, @current_user) do %>
+  <p>
+    <.link href={~p"/staff/courses/#{@course}"}>Staff View</.link>
+  </p>
+<% end %>
+
 <ul>
   <li>
     <strong>Start date:</strong>
@@ -14,12 +20,6 @@
     <!-- react component attendance.jsx -->
     <p>Attendance component goes here...</p>
   </div>
-<% end %>
-
-<%= if is_staff?(@current_reg, @current_user) do %>
-  <p>
-    <.link href={~p"/staff/courses/#{@course}"}>Staff View</.link>
-  </p>
 <% end %>
 
 <%= for bucket <- @course.buckets do %>

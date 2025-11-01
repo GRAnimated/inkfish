@@ -13,7 +13,7 @@ function connect(course_id, setState) {
   channel.join()
     .receive("ok", setState)
     .receive("error", (msg) => {
-      console.log("error joining attendence", msg);
+      console.log("error joining attendance", msg);
     });
   channel.on("state", setState);
 }
@@ -27,7 +27,7 @@ function disconnect() {
 
 function AttBox({course_id, children}) {
   return (
-    <div className="border border-secondary p-2">
+    <div className="border border-secondary p-2 mb-2">
       <p>
         <strong>Attendance</strong>
         &nbsp;

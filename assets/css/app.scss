@@ -1,5 +1,7 @@
 /* This file is for your main application css. */
 
+$body-bg: #f6f6f6;
+
 @import "bootstrap/scss/bootstrap";
 @import "bootswatch/dist/spacelab/bootswatch";
 @import "react-datepicker/dist/react-datepicker";
@@ -19,6 +21,14 @@ body {
 
 a {
     text-decoration: none;
+}
+
+h1 {
+    font-weight: 700;
+}
+
+h2 {
+    font-weight: 600;
 }
 
 .h-3 {

@@ -76,7 +76,7 @@
       <th>Active</th>
       <th>Date</th>
       <%= for gcol <- @assignment.grade_columns do %>
-        <th><%= gcol.name %></th>
+        <th><%= String.capitalize(gcol.name) %></th>
       <% end %>
       <th>Total Score</th>
       <th>Actions</th>
