@@ -1,6 +1,6 @@
 /* This file is for your main application css. */
 
-$body-bg: #f6f6f6;
+$body-bg: #fcfcfc;
 
 @import "bootstrap/scss/bootstrap";
 @import "bootswatch/dist/spacelab/bootswatch";
@@ -15,9 +15,19 @@ body {
     scrollbar-gutter: stable;
 }
 
+html[data-bs-theme='dark'] #icon {
+    filter: invert(1);
+}
+
 body {
     display: flex;
     flex-direction: column;
+}
+
+.container,
+.container-fluid {
+    padding-left: 4rem;
+    padding-right: 4rem;
 }
 
 a {

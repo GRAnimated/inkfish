@@ -31,25 +31,21 @@
               setTheme(newTheme);
               updateIcon(newTheme);
           };
-            const updateIcon = theme => {
-              const icon = document.querySelector('.theme-icon');
-              if (!icon) return;
-              const themeDivs = document.querySelectorAll('.theme');
-              themeDivs.forEach(div => {
-                div.style.color = theme === 'dark' ? '#fff' : '#000';
-              });
+          const updateIcon = theme => {
+            const icon = document.querySelector('.theme-icon');
+            if (icon)
               icon.src = theme === 'dark' ? '/images/sun.svg' : '/images/moon.svg';
-            };
+          };
 
-          setTheme(getPreferredTheme());
-          updateIcon(getPreferredTheme());
+          const initTheme = () => {
+            const theme = getPreferredTheme();
+            setTheme(theme);
+            window.addEventListener("DOMContentLoaded", () => {
+              updateIcon(getPreferredTheme());
+            });
+          };
 
-          window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-              if (!getStoredTheme()) {
-                  setTheme(getPreferredTheme());
-                  updateIcon(getPreferredTheme());
-              }
-          });
+          initTheme();
           window.toggleTheme = toggleTheme;
       })();
     </script>
