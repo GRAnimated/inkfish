@@ -27,7 +27,7 @@ function disconnect() {
 
 function AttBox({course_id, children}) {
   return (
-    <div className="border border-secondary m-2 p-2">
+    <div className="border border-secondary p-2">
       <p>
         <strong>Attendance</strong>
         &nbsp;
