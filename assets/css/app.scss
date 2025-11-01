@@ -25,9 +25,44 @@ a {
     height: 1em;
 }
 
+header {
+    padding-top: 10px;
+    font-size: 16px;
+}
+
+header .row:first-child {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .header-logo {
-    width: 64px;
-    height: 64px;
+    max-height: 48px;
+    width: auto;
+}
+
+header .col-md-5 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+header .col-md-5 a {
+    color: #6c757d;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+header .col-md-5 a:hover {
+    color: #0d6efd;
+}
+
+header .col-md-4 {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
 }
 
 .inkfish-footer {
@@ -127,7 +162,12 @@ textarea.form-control {
     cursor: default;
 }
 
-.theme {
+.nav-btn {
     background: none;
     border: none;
+    padding: 0;
+}
+
+#icon {
+    margin: 0.25em;
 }
