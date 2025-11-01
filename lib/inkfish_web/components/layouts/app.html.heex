@@ -75,7 +75,8 @@
               <img src="/images/inkfish.png" class="header-logo"/>
             </.link>
           </div>
-          <div class="col-md-5">
+
+          <div class="col-md-4">
             <%= if @current_user && @current_user.is_admin do %>
               {InkfishWeb.Layouts.admin_nav(assigns)}
             <% else %>
@@ -84,16 +85,20 @@
 
             {link("Queue", to: ~p"/ag_jobs")}
           </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-8">
+            {breadcrumb(@conn)}
+          </div>
+
           <div class="col-md-4">
             <%= if @current_user do %>
               <%= @current_user.email %> <%= link(to: ~p"/users/#{@current_user}") do %>
                 <img id="icon" src="/images/user.svg" width="18" height="18" />
               <% end %>
               <%= if @current_ruid do %>
-                {link("Resume",
-                  to: ~p"/session/resume",
-                  method: :post
-                )}
+                {link("Resume", to: ~p"/session/resume", method: :post)}
               <% else %>
                 <%= link(to: ~p"/session", method: :delete) do %>
                   <img id="icon" src="/images/logout.svg" width="18" height="18" />
@@ -102,18 +107,13 @@
             <% else %>
               <p id="icon">No Session</p>
             <% end %>
+
             <button class="nav-btn" onclick="toggleTheme()">
               <img class="theme-icon" id="icon" src="/images/moon.svg" width="18" height="18" />
             </button>
           </div>
         </div>
-        <div class="row">
-          <div class="col">
-            {breadcrumb(@conn)}
-          </div>
-        </div>
       </header>
-
       <.flash kind={:info} flash={@flash} />
       <.flash kind={:error} flash={@flash} />
     </div>
@@ -122,7 +122,7 @@
       if assigns[:fluid_grid] do
         "container-fluid inkfish-main-container"
       else
-        "container-lg inkfish-main-container"
+        "container inkfish-main-container"
       end
     }>
       <div class="inkfish-main">
