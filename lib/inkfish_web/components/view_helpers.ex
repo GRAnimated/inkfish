@@ -152,7 +152,7 @@ defmodule InkfishWeb.ViewHelpers do
       |> Decimal.to_string(:normal)
     end)
   end
-  
+
   # <%= show_score(bucket, @totals[bucket.id]) %>
   def show_score(bucket, %Decimal{} = score) do
     IO.inspect(bucket)
@@ -310,5 +310,29 @@ defmodule InkfishWeb.ViewHelpers do
   def show_attendance(%Attendance{} = at) do
     at = Attendance.put_status(at)
     at.status
+  end
+
+  def get_status(%Assignment{} = asgn) do
+    now = Inkfish.LocalTime.now()
+    sub = Enum.find(asgn.subs, & &1.active)
+    {text, class} =
+      cond do
+        sub && NaiveDateTime.compare(sub.inserted_at, asgn.due) != :gt ->
+          {"Submitted", "assignment-status status-submitted"}
+
+        sub && NaiveDateTime.compare(sub.inserted_at, asgn.due) == :gt ->
+          {"Late", "assignment-status status-late"}
+
+        is_nil(sub) && NaiveDateTime.diff(asgn.due, now, :hour) > 48 ->
+          {"", ""}
+
+        is_nil(sub) && NaiveDateTime.compare(now, asgn.due) == :lt ->
+          {"Due", "assignment-status status-due-soon"}
+
+        is_nil(sub) && NaiveDateTime.compare(now, asgn.due) == :gt ->
+          {"Missing", "assignment-status status-missing"}
+      end
+
+    content_tag(:div, text, class: "#{class}")
   end
 end

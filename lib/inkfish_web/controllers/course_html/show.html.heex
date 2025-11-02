@@ -29,6 +29,7 @@
       <tr>
         <th>Name</th>
         <th>Due</th>
+        <th>&nbsp;</th>
         <th>Weight</th>
         <th>Score</th>
       </tr>
@@ -38,6 +39,7 @@
         <tr>
           <td><.link href={~p"/assignments/#{as}"}><%= as.name %></.link></td>
           <td class="human-date"><%= show_timestamp(as.due) %></td>
+          <td class="asgn-status"><%= get_status(as) %></td>
           <td><%= as.weight %></td>
           <td><%= show_score(@conn, as) %> / <%= as.points %></td>
         </tr>
@@ -45,6 +47,7 @@
       <tr>
         <td>&nbsp;</td>
         <td>weight = <%= bucket.weight %></td>
+        <td>&nbsp;</td>
         <td>Total:</td>
         <td><%= show_score(@totals[bucket.id]) %>%</td>
       </tr>
