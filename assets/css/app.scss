@@ -26,6 +26,7 @@ body {
 
 a {
     text-decoration: none;
+    transition: color 0.15s ease;
 }
 
 h1 {
@@ -57,27 +58,32 @@ header .row:first-child {
     width: auto;
 }
 
+header .nav-text {
+    gap: 1.25rem;
+}
+
+header .nav-buttons {
+    gap: 0.5rem;
+}
+
 header .col-md-4 {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
 }
 
 header .col-md-4 a {
     color: #6c757d;
     text-decoration: none;
-    transition: color 0.2s ease;
 }
 
 header .col-md-4 a:hover {
-    color: #0d6efd;
+    color: var(--bs-link-hover-color-rgb);
 }
 
 header .col-md-4 {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 10px;
 }
 
 header .row {
