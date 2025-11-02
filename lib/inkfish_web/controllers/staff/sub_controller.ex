@@ -94,7 +94,7 @@ defmodule InkfishWeb.Staff.SubController do
     })
 
     conn
-    |> put_flash(:info, "Toggle ingore late for sub: ##{sub.id}.")
+    |> put_flash(:info, "Toggle ignore late for sub: ##{sub.id}.")
     |> redirect(to: ~p"/staff/subs/#{sub}")
   end
 end

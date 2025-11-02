@@ -73,13 +73,13 @@
           </div>
 
           <div class="col-md-4">
-            <%= if @current_user && @current_user.is_admin do %>
-              {InkfishWeb.Layouts.admin_nav(assigns)}
-            <% else %>
-              &nbsp;
+            <%= if @current_user do %>
+              <%= if @current_user.is_admin do %>
+                {InkfishWeb.Layouts.admin_nav(assigns)}
+              <% else %>
+                {InkfishWeb.Layouts.user_nav(assigns)}
+              <% end %>
             <% end %>
-
-            {link("Queue", to: ~p"/ag_jobs")}
           </div>
         </div>
 
@@ -100,8 +100,6 @@
                   <img id="icon" src="/images/logout.svg" width="18" height="18" />
                 <% end %>
               <% end %>
-            <% else %>
-              <p id="icon">No Session</p>
             <% end %>
 
             <button class="nav-btn" onclick="toggleTheme()">
