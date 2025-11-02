@@ -254,6 +254,8 @@ defmodule Inkfish.Assignments do
         inner_join: bucket in assoc(as, :bucket),
         where: bucket.course_id == ^course_id,
         where: as.due > fragment("now()::timestamp"),
+        # Small hack to avoid the attendance assignment from being shown as due
+        where: as.name != "Attendance",
         limit: 1
     )
   end
