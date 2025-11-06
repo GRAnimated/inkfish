@@ -23,41 +23,80 @@
 <% end %>
 
 <%= for bucket <- @course.buckets do %>
-  <h2><%= bucket.name %></h2>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th style="width: 25%;">Name</th>
-        <th class="d-none d-md-table-cell" style="width: 43%;">Due</th>
-        <th style="width: 12%;">&nbsp;</th>
-        <th style="width: 10%;">Weight</th>
-        <th style="width: 10%;">Score</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= for as <- bucket.assignments, !as.hide do %>
+  <!-- desktop -->
+  <div class="d-none d-md-block">
+    <h2><%= bucket.name %></h2>
+    <table class="table table-striped assignments-table">
+      <thead>
         <tr>
-          <td>
-            <.link href={~p"/assignments/#{as}"}><%= as.name %></.link>
-            <div class="small d-md-none human-date">
-              <%= show_timestamp(as.due) %>
-            </div>
-          </td>
-          <td class="d-none d-md-table-cell human-date"><%= show_timestamp(as.due) %></td>
-          <td class="asgn-status"><%= get_status(as) %></td>
-          <td><%= as.weight %></td>
-          <td><%= show_score(@conn, as) %> / <%= as.points %></td>
+          <th>Name</th>
+          <th>Due</th>
+          <th>&nbsp;</th>
+          <th>Weight</th>
+          <th>Score</th>
         </tr>
-      <% end %>
-      <tr>
-        <td>&nbsp;</td>
-        <td class="d-none d-md-table-cell">weight = <%= bucket.weight %></td>
-        <td>&nbsp;</td>
-        <td>Total:</td>
-        <td><%= show_score(@totals[bucket.id]) %>%</td>
-      </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <%= for as <- bucket.assignments, !as.hide do %>
+          <tr>
+            <td>
+              <.link href={~p"/assignments/#{as}"}><%= as.name %></.link>
+            </td>
+            <td>
+              <span class="text-muted small human-date">
+                <%= show_timestamp(as.due) %>
+              </span>
+            </td>
+            <td><%= get_status(as) %></td>
+            <td><%= as.weight %></td>
+            <td><%= show_score(@conn, as) %> / <%= as.points %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td>weight = <%= bucket.weight %></td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>Total:</td>
+          <td><%= show_score(@totals[bucket.id]) %>%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- mobile -->
+  <div class="d-md-none mt-4">
+    <div class="d-flex justify-content-between align-items-center">
+      <span class="h2"><%= bucket.name %></span>
+      <span>Total Score: <%= show_score(@totals[bucket.id]) %>%</span>
+    </div>
+    <%= for as <- bucket.assignments, !as.hide do %>
+      <.link href={~p"/assignments/#{as}"}>
+        <div class="mobile-item assignment-item">
+          <div class="mobile-header">
+            <div class="mobile-name">
+              <%= as.name %>
+            </div>
+            <div class="mobile-status">
+              <%= get_status(as) %>
+            </div>
+          </div>
+          <div class="assignment-date small human-date">
+            <%= show_timestamp(as.due) %>
+          </div>
+          <div class="mobile-info">
+            <div class="mobile-info-item">
+              <span class="mobile-label">Weight:</span>
+              <span><%= as.weight %></span>
+            </div>
+            <div class="mobile-info-item">
+              <span class="mobile-label">Score:</span>
+              <span><%= show_score(@conn, as) %> / <%= as.points %></span>
+            </div>
+          </div>
+        </div>
+      </.link>
+    <% end %>
+  </div>
 <% end %>
 
 <h2>Active Teams</h2>

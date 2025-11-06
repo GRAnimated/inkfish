@@ -333,6 +333,6 @@ defmodule InkfishWeb.ViewHelpers do
           {"Missing", "assignment-status status-missing"}
       end
 
-    content_tag(:div, text, class: "#{class}")
+    content_tag(:span, text, class: "#{class}")
   end
 end
