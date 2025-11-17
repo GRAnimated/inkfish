@@ -9,38 +9,80 @@
         </p>
       </div>
     </div>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <td>Course</td>
-          <td>Role</td>
-          <td>Next Due</td>
-        </tr>
-      </thead>
-      <tbody>
-        <%= for reg <- @regs do %>
+    
+    <!-- desktop -->
+    <div class="d-none d-md-block">
+      <table class="table table-striped">
+        <thead>
           <tr>
-            <td>
-              <.link href={~p"/courses/#{reg.course.id}"}>
-                <%= reg.course.name %>
-              </.link>
-              <%= if is_staff?(reg, reg.user) do %>
-                (<.link href={~p"/staff/courses/#{reg.course}"}>Staff View</.link>)
-              <% end %>
-            </td>
-            <td><%= show_reg_role(reg) %></td>
-            <td>
-              <% next = Map.get(@dues, reg.course_id) %>
-              <%= if next do %>
-                <.link href={~p"/assignments/#{next.id}"}><%= next.name %></.link> <br />
-                <span class="small human-date"><%= next.due %></span>
-              <% else %>
-                ∅
-              <% end %>
-            </td>
+            <td>Course</td>
+            <td>Role</td>
+            <td>Next Due</td>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <%= for reg <- @regs do %>
+            <tr>
+              <td>
+                <.link href={~p"/courses/#{reg.course.id}"}>
+                  <%= reg.course.name %>
+                </.link>
+                <%= if is_staff?(reg, reg.user) do %>
+                  (<.link href={~p"/staff/courses/#{reg.course}"}>Staff View</.link>)
+                <% end %>
+              </td>
+              <td><%= show_reg_role(reg) %></td>
+              <td>
+                <% next = Map.get(@dues, reg.course_id) %>
+                <%= if next do %>
+                  <.link href={~p"/assignments/#{next.id}"}><%= next.name %></.link> <br />
+                  <span class="small human-date"><%= next.due %></span>
+                <% else %>
+                  ∅
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    
+    <!-- mobile -->
+    <div class="d-md-none mt-4">
+      <%= for reg <- @regs do %>
+        <.link href={~p"/courses/#{reg.course.id}"}>
+          <div class="mobile-item">
+            <div class="mobile-header">
+              <div class="mobile-name">
+                <%= reg.course.name %>
+              </div>
+              <div class="mobile-status">
+                <%= show_reg_role(reg) %>
+              </div>
+            </div>
+            <%= if is_staff?(reg, reg.user) do %>
+              <div class="small mt-1">
+                <.link href={~p"/staff/courses/#{reg.course}"}>Staff View</.link>
+              </div>
+            <% end %>
+            <div class="mobile-info mt-2">
+              <div class="mobile-info-item">
+                <span class="mobile-label">Next Due:</span>
+                <% next = Map.get(@dues, reg.course_id) %>
+                <%= if next do %>
+                  <span>
+                    <.link href={~p"/assignments/#{next.id}"}><%= next.name %></.link>
+                    <br />
+                    <span class="small human-date"><%= next.due %></span>
+                  </span>
+                <% else %>
+                  <span>∅</span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </.link>
+      <% end %>
+    </div>
   </div>
 </div>

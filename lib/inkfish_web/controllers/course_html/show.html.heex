@@ -71,7 +71,7 @@
     </div>
     <%= for as <- bucket.assignments, !as.hide do %>
       <.link href={~p"/assignments/#{as}"}>
-        <div class="mobile-item assignment-item">
+        <div class="mobile-item">
           <div class="mobile-header">
             <div class="mobile-name">
               <%= as.name %>

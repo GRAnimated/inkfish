@@ -252,14 +252,11 @@ textarea.form-control {
     padding: 0.75rem;
 }
 
-.assignment-item {
+.mobile-item {
     border: 1px solid var(--bs-secondary);
     border-radius: var(--bs-border-radius);
     padding: 1.0rem;
     margin-bottom: 0.5rem;
-}
-
-.mobile-item {
     color: var(--bs-body-color);
 
     html[data-bs-theme='dark'] & {
